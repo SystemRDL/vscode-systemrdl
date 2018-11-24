@@ -3,6 +3,15 @@
     "displayName": "SystemRDL",
     "description": "SystemRDL Language Support",
     "version": "1.0.0",
+    "publisher": "amykyta3",
+    "homepage": "https://github.com/SystemRDL/vscode-systemrdl",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/SystemRDL/vscode-systemrdl.git"
+	},
+	"bugs": {
+		"url": "https://github.com/SystemRDL/vscode-systemrdl/issues"
+    },
     "engines": {
         "vscode": "^1.29.0"
     },
