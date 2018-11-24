@@ -1,0 +1,326 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SystemRDL",
+	"scopeName": "source.systemrdl",
+	"patterns": [
+		{"include": "#comments"},
+		{"include": "#include"},
+		{"include": "#embedded_perl"},
+		{"include": "#local_prop_assignment_lhs"},
+		{"include": "#dynamic_prop_assignment_lhs"},
+
+
+		{"include": "#string_literal"},
+		{"include": "#boolean_literal"},
+		{"include": "#accesstype_literal"},
+		{"include": "#onreadtype_literal"},
+		{"include": "#onwritetype_literal"},
+		{"include": "#addressingtype_literal"},
+		{"include": "#precedencetype_literal"},
+		{"include": "#numeric_literal"},
+
+
+		{"include": "#component_type"},
+		{"include": "#component_inst_type"},
+		{"include": "#keywords"},
+		{"include": "#data_type"},
+		{"include": "#other_decl"},
+
+		{"include": "#operators"}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"end": "\\*/",
+					"name": "comment.block.systemrdl"
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"begin": "//",
+							"end": "(?=\\n)",
+							"name": "comment.line.double-slash.systemrdl"
+						}
+					]
+				}
+			]
+		},
+		"embedded_perl": {
+			"name": "string.quoted.double.systemrdl",
+			"begin": "<%",
+			"end": "%>",
+			"patterns": [
+				{
+					"include": "source.perl"
+				}
+			]
+		},
+		"include":{
+			"begin": "^\\s*((`)\\s*include)\\b\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.directive.systemrdl"
+				},
+				"2": {
+					"name": "punctuation.definition.directive.systemrdl"
+				}
+			},
+			"end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
+			"name": "meta.preprocessor.include.systemrdl",
+			"patterns": [
+				{
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.systemrdl"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.systemrdl"
+						}
+					},
+					"name": "string.quoted.double.include.c"
+				},
+				{
+					"begin": "<",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.systemrdl"
+						}
+					},
+					"end": ">",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.systemrdl"
+						}
+					},
+					"name": "string.quoted.other.lt-gt.include.systemrdl"
+				}
+			]
+		},
+
+
+
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.systemrdl",
+				"match": "\\b(default|posedge|negedge|bothedge|level|nonsticky)\\b"
+			}]
+		},
+
+
+
+
+		"component_type": {
+			"patterns": [{
+				"name": "storage.type.systemrdl",
+				"match": "\\b(signal|addrmap|regfile|reg|field|mem)\\b"
+			}]
+		},
+		"component_inst_type": {
+			"patterns": [{
+				"name": "storage.modifier.systemrdl",
+				"match": "\\b(external|internal)\\b"
+			}]
+		},
+		"data_type": {
+			"patterns": [{
+				"name": "storage.type.systemrdl",
+				"match": "\\b(accesstype|addressingtype|onreadtype|onwritetype|bit|longint|string|boolean)\\b"
+			}]
+		},
+		"other_decl": {
+			"patterns": [{
+				"name": "support.type.systemrdl",
+				"match": "\\b(property|constraint|struct|enum)\\b"
+			}]
+		},
+		
+		
+		
+		
+		"string_literal": {
+			"name": "string.quoted.double.systemrdl",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.systemrdl",
+					"match": "\\\\."
+				}
+			]
+		},
+		"boolean_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(true|false)\\b"
+			}]
+		},
+		"accesstype_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(na|rw|wr|r|w|rw1|w1)\\b"
+			}]
+		},
+		"onreadtype_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(rclr|rset|ruser)\\b"
+			}]
+		},
+		"onwritetype_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(woset|woclr|wot|wzs|wzc|wzt|wclr|wset|wuser)\\b"
+			}]
+		},
+		"addressingtype_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(compact|regalign|fullalign)\\b"
+			}]
+		},
+		"precedencetype_literal": {
+			"patterns": [{
+				"name": "constant.language.systemrdl",
+				"match": "\\b(hw|sw)\\b"
+			}]
+		},
+		"numeric_literal":{
+			"patterns":[
+				{
+					"match":"\\b0[xX][0-9a-fA-F][0-9a-fA-F_]*\\b",
+					"name":"constant.numeric.hex.systemrdl"
+				},
+				{
+					"match":"\\b[0-9]+'[bB][0-1][0-1_]*\\b",
+					"name":"constant.numeric.bin.systemrdl"
+				},
+				{
+					"match":"\\b[0-9]+'[dD][0-9][0-9_]*\\b",
+					"name":"constant.numeric.dec.systemrdl"
+				},
+				{
+					"match":"\\b[0-9]+'[hH][0-9a-fA-F][0-9a-fA-F_]*\\b",
+					"name":"constant.numeric.hex.systemrdl"
+				},
+				{
+					"match":"\\b[0-9][0-9_]*\\b",
+					"name":"constant.numeric.dec.systemrdl"
+				}
+			]
+		},
+
+
+		"local_prop_assignment_lhs": {
+			"patterns": [
+				{
+					"match": "\\b(default\\b\\s+)?(\\w+)\\s*(=)",
+					"captures": {
+						"1":{
+							"name": "keyword.control.systemrdl"
+						},
+						"2":{
+							"patterns":[
+								{
+									"include": "#property_name"
+								},
+								{
+									"match": "\\w+",
+									"name" : "variable.other.systemrdl"
+								}
+							]
+						},
+						"3":{
+							"name": "keyword.operator.assignment.systemrdl"
+						}
+					}
+				}
+			]
+		},
+
+		"dynamic_prop_assignment_lhs": {
+			"patterns": [
+				{
+					"match": "\\b([\\w.\\[\\]]+)\\s*(->)\\s*(\\w+)\\s*(=)",
+					"captures": {
+						"1":{
+							"name": "variable.other.systemrdl"
+						},
+						"2":{
+							"name": "keyword.operator.prop-access.systemrdl"
+						},
+						"3":{
+							"patterns":[
+								{
+									"include": "#property_name"
+								},
+								{
+									"match": "\\w+",
+									"name" : "variable.other.systemrdl"
+								}
+							]
+						},
+						"4":{
+							"name": "keyword.operator.assignment.systemrdl"
+						}
+					}
+				}
+			]
+		},
+
+		"property_name": {
+			"patterns": [{
+				"name": "variable.language.systemrdl",
+				"match": "\\b(name|desc|dontcompare|donttest|ispresent|errextbus|hdl_path|hdl_path_gate|hdl_path_gate_slice|hdl_path_slice|signalwidth|sync|async|cpuif_reset|field_reset|activelow|activehigh|hw|sw|next|reset|resetsignal|rclr|rset|onread|woset|woclr|onwrite|swwe|swwel|swmod|swacc|singlepulse|we|wel|anded|ored|xored|fieldwidth|hwclr|hwset|hwenable|hwmask|counter|threshold|saturate|incrthreshold|incrsaturate|overflow|underflow|incr|incrvalue|incrwidth|decrvalue|decr|decrwidth|decrsaturate|decrthreshold|intr|intr_type|enable|mask|haltenable|haltmask|sticky|stickybit|encode|precedence|paritycheck|regwidth|accesswidth|shared|mementries|memwidth|alignment|sharedextbus|bigendian|littleendian|addressing|rsvdset|rsvdsetX|msb0|lsb0|bridge)\\b"
+			}]
+		},
+
+		"operators":{
+			"patterns":[
+				{
+					"match": "<<|>>",
+					"name": "keyword.operator.bitwise.shift.systemrdl"
+				},
+				{
+					"match": "@|\\+=|&=",
+					"name": "keyword.operator.systemrdl"
+				},
+				{
+					"match": "!=|<=|>=|==|<|>",
+					"name": "keyword.operator.comparison.systemrdl"
+				},
+				{
+					"match": "&&|!|\\|\\|",
+					"name": "keyword.operator.logical.systemrdl"
+				},
+				{
+					"match": "&|\\||\\^|~",
+					"name": "keyword.operator.systemrdl"
+				},
+				{
+					"match": "=",
+					"name": "keyword.operator.assignment.systemrdl"
+				},
+				{
+					"match": "\\?|:",
+					"name": "keyword.operator.ternary.systemrdl"
+				},
+				{
+					"match": "\\+|-|\\*|/|%",
+					"name": "keyword.operator.systemrdl"
+				},
+				{
+					"match": "#",
+					"name": "keyword.operator.systemrdl"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+    "name": "systemrdl",
+    "displayName": "SystemRDL",
+    "description": "SystemRDL Language Support",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.29.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "systemrdl",
+            "aliases": ["SystemRDL", "systemrdl"],
+            "extensions": [".rdl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "systemrdl",
+            "scopeName": "source.systemrdl",
+            "path": "./syntaxes/systemrdl.tmLanguage.json"
+        }]
+    }
+}
