@@ -1,7 +1,9 @@
 # Change Log
 All notable changes to the "systemrdl" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [1.1.0] - 2020-09-17
+- Add full Verilog Preprocessor support
+- Fix some quirks
 
-## [Unreleased]
+## [1.0.0] - 2018-11-23
 - Initial release

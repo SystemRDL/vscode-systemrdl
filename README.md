@@ -1,3 +1,7 @@
 # SystemRDL support for VS Code
 
-Provides basic syntax highlighting for Accelera's SystemRDL.
+Provides syntax highlighting for Accelera's SystemRDL 2.0.
+
+![Sample](images/sample.png)
+
+For more free & open-source SystemRDL tools, check out the [SystemRDL project on GitHub](https://github.com/SystemRDL)!

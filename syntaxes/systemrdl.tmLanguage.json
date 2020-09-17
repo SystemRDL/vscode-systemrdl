@@ -4,7 +4,13 @@
 	"scopeName": "source.systemrdl",
 	"patterns": [
 		{"include": "#comments"},
-		{"include": "#include"},
+		{"include": "#vpp_escapes"},
+		{"include": "#vpp_include"},
+		{"include": "#vpp_define"},
+		{"include": "#vpp_undef"},
+		{"include": "#vpp_conditional"},
+		{"include": "#other_vpp_directives"},
+		{"include": "#vpp_macros"},
 		{"include": "#embedded_perl"},
 		{"include": "#local_prop_assignment_lhs"},
 		{"include": "#dynamic_prop_assignment_lhs"},
@@ -59,11 +65,28 @@
 				}
 			]
 		},
-		"include":{
+
+		"vpp_escapes": {
+			"patterns": [
+				{
+					"match": "`\\`\"",
+					"name": "punctuation.definition.directive.systemrdl"
+				},
+				{
+					"match": "`\"",
+					"name": "punctuation.definition.directive.systemrdl"
+				},
+				{
+					"match": "``",
+					"name": "punctuation.definition.directive.systemrdl"
+				}
+			]
+		},
+		"vpp_include":{
 			"begin": "^\\s*((`)\\s*include)\\b\\s*",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.control.directive.systemrdl"
+					"name": "keyword.control.directive.include.systemrdl"
 				},
 				"2": {
 					"name": "punctuation.definition.directive.systemrdl"
@@ -105,6 +128,85 @@
 			]
 		},
 
+		"vpp_define": {
+			"patterns": [{
+				"match": "^\\s*((`)\\s*define)\\s+(\\w+)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.control.directive.define.systemrdl"
+					},
+					"2": {
+						"name": "punctuation.definition.directive.systemrdl"
+					},
+					"3": {
+						"name": "entity.name.function.preprocessor.systemrdl"
+					}
+				}
+			}]
+		},
+
+		"vpp_undef": {
+			"patterns": [{
+				"match": "^\\s*((`)\\s*undef)\\s+(\\w+)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.control.directive.undef.systemrdl"
+					},
+					"2": {
+						"name": "punctuation.definition.directive.systemrdl"
+					},
+					"3": {
+						"name": "entity.name.function.preprocessor.systemrdl"
+					}
+				}
+			}]
+		},
+
+		"vpp_conditional": {
+			"patterns": [{
+				"match": "^\\s*((`)\\s*(?:ifdef|ifndef|elsif))\\s+(\\w+)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.control.directive.undef.systemrdl"
+					},
+					"2": {
+						"name": "punctuation.definition.directive.systemrdl"
+					},
+					"3": {
+						"name": "entity.name.function.preprocessor.systemrdl"
+					}
+				}
+			}]
+		},
+
+		"other_vpp_directives": {
+			"patterns": [{
+				"match": "^\\s*((`)\\s*(?:else|endif|line))\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.control.directive.systemrdl"
+					},
+					"2": {
+						"name": "punctuation.definition.directive.systemrdl"
+					}
+				}
+			}]
+		},
+
+		"vpp_macros": {
+			"patterns": [{
+				"match": "((`)\\s*\\w+)\\b",
+				"captures": {
+					"1": {
+						"name": "keyword.control.directive.systemrdl"
+					},
+					"2": {
+						"name": "punctuation.definition.directive.systemrdl"
+					}
+				}
+			}]
+		},
+
 
 
 		"keywords": {
@@ -113,7 +215,6 @@
 				"match": "\\b(default|posedge|negedge|bothedge|level|nonsticky)\\b"
 			}]
 		},
-
 
 
 
@@ -132,7 +233,7 @@
 		"data_type": {
 			"patterns": [{
 				"name": "storage.type.systemrdl",
-				"match": "\\b(accesstype|addressingtype|onreadtype|onwritetype|bit|longint|string|boolean)\\b"
+				"match": "\\b(accesstype|addressingtype|onreadtype|onwritetype|bit|longint|string|boolean|unsigned)\\b"
 			}]
 		},
 		"other_decl": {
@@ -141,10 +242,10 @@
 				"match": "\\b(property|constraint|struct|enum)\\b"
 			}]
 		},
-		
-		
-		
-		
+
+
+
+
 		"string_literal": {
 			"name": "string.quoted.double.systemrdl",
 			"begin": "\"",

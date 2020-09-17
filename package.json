@@ -2,8 +2,9 @@
     "name": "systemrdl",
     "displayName": "SystemRDL",
     "description": "SystemRDL Language Support",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publisher": "amykyta3",
+    "icon": "images/icon.png",
     "homepage": "https://github.com/SystemRDL/vscode-systemrdl",
     "repository": {
 		"type": "git",
@@ -15,6 +16,12 @@
     "engines": {
         "vscode": "^1.29.0"
     },
+    "keywords": [
+        "rdl",
+        "register",
+        "rtl",
+        "hdl"
+    ],
     "categories": [
         "Programming Languages"
     ],
