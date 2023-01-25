@@ -1,6 +1,6 @@
 # SystemRDL support for VS Code
 
-Provides syntax highlighting for Accelera's SystemRDL 2.0.
+Provides syntax highlighting for Accellera's SystemRDL 2.0.
 
 ![Sample](images/sample.png)
 
