@@ -92,7 +92,7 @@
         "body": ["mem ${1:memname} {",
             "\tmementries = ${2:4096};",
             "\tmemwidth   = ${3:32};",
-            \t$0],
+            "\t$0"],
         "description": "Memory component."
     },
 
