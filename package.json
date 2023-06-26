@@ -23,7 +23,8 @@
         "hdl"
     ],
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "contributes": {
         "languages": [{
@@ -36,6 +37,10 @@
             "language": "systemrdl",
             "scopeName": "source.systemrdl",
             "path": "./syntaxes/systemrdl.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "systemrdl",
+            "path": "./snippets/systemrdl.json"
         }]
     }
 }
