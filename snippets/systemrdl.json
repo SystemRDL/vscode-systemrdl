@@ -4,19 +4,16 @@
         "body": ["addrmap ${1:blkname} {", 
             "\tname = \"$2\";",
             "\tdesc = \"$3\";",
-            "\tdefault regwidth = 32;",
-            "\tdefault sw = rw;",
-            "\tdefault hw = r;",
-            "\trsvdset = 0;", 
-            "\t$0"],
+            "\t$0",
+            "};"],
         "description": "Address map component."
     },
 
     "Enum": {
         "prefix": ["enum"],
         "body": ["enum ${1:enunname} {", 
-            "\t${2:e0} = 0  { desc = \"$3\"; };",
-            "\t${4:e1} = 1  { desc = \"$5\"; };",
+            "\t${2:e0} = 0x0  { desc = \"$3\"; };",
+            "\t${4:e1} = 0x1  { desc = \"$5\"; };",
             "\t$0",
             "};"],
         "description": "Enumeration component."
@@ -25,11 +22,11 @@
     "Field": {
         "prefix": ["field"],
         "body": ["field {", 
-            "\thw = ${3:r};",
-            "\tsw = ${4:rw};",
-            "\tname = \"${5:Field name}\";",
-            "\tdesc =\"${0:Field description}\";",
-            "} ${1:fieldname} = ${2:[1:0]};"],
+            "\tname = \"${6:Field name}\";",
+            "\tdesc = \"${0:Field description}\";",    
+            "\thw   = ${4:r};",
+            "\tsw   = ${5:rw};",
+            "} ${1:fieldname}[${2:1:0}] = ${3:0x0};"],
         "description": "Field component."
     },
 
@@ -90,9 +87,10 @@
     "Memory": {
         "prefix": ["mem"],
         "body": ["mem ${1:memname} {",
-            "\tmementries = ${2:4096};",
+            "\tmementries = ${2:1024};",
             "\tmemwidth   = ${3:32};",
-            "\t$0"],
+            "\t$0",
+            "};"],
         "description": "Memory component."
     },
 
@@ -100,7 +98,7 @@
         "prefix": ["reg"],
         "body": ["reg {", 
             "\tname = \"${3:Register name}\";",
-            "\tdesc =\"${4:Register description}\";",
+            "\tdesc = \"${4:Register description}\";",
             "\t$0",
             "} ${1:regname} @ ${2:0x0};"],
         "description": "Register component."
@@ -118,7 +116,7 @@
         "prefix": ["`undef"],
         "body": ["`undef \"$0\""],
         "description": "Undefine directive."
-    },
+    }
     
     
 }
