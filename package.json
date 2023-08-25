@@ -2,7 +2,7 @@
     "name": "systemrdl",
     "displayName": "SystemRDL",
     "description": "SystemRDL Language Support",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "publisher": "amykyta3",
     "icon": "images/icon.png",
     "homepage": "https://github.com/SystemRDL/vscode-systemrdl",
@@ -17,13 +17,15 @@
         "vscode": "^1.29.0"
     },
     "keywords": [
+        "systemrdl",
         "rdl",
         "register",
         "rtl",
         "hdl"
     ],
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "contributes": {
         "languages": [{
@@ -36,6 +38,10 @@
             "language": "systemrdl",
             "scopeName": "source.systemrdl",
             "path": "./syntaxes/systemrdl.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "systemrdl",
+            "path": "./snippets/systemrdl.json"
         }]
     }
 }

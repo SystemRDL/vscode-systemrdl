@@ -1,0 +1,145 @@
+{
+    "Addrmap": {
+        "prefix": ["addrmap"],
+        "body": [
+            "addrmap ${1:type_name} {",
+            "\tname = \"$2\";",
+            "\tdesc = \"$3\";",
+            "\t$0",
+            "};"
+        ],
+        "description": "Address map component."
+    },
+
+    "Reg": {
+        "prefix": ["reg"],
+        "body": [
+            "reg {",
+            "\tname = \"${3:Register name}\";",
+            "\tdesc = \"${4:Register description}\";",
+            "\t$0",
+            "} ${1:inst_name} @ ${2:0x0};"
+        ],
+        "description": "Register component."
+    },
+
+    "Field": {
+        "prefix": ["field"],
+        "body": [
+            "field {",
+            "\tname = \"${4:Field name}\";",
+            "\tdesc = \"${5:Field description}\";",
+            "\thw   = ${6:r};",
+            "\tsw   = ${0:rw};",
+            "} ${1:fieldname}[${2:1:0}] = ${3:0x0};"
+        ],
+        "description": "Field component."
+    },
+
+    "Signal": {
+        "prefix": ["signal"],
+        "body": [
+            "signal {",
+            "\t$0",
+            "} ${1:signame};"
+        ],
+        "description": "Signal component."
+    },
+
+    "Memory": {
+        "prefix": ["mem"],
+        "body": [
+            "mem ${1:type_name} {",
+            "\tmementries = ${2:1024};",
+            "\tmemwidth = ${3:32};",
+            "\t$0",
+            "};"
+        ],
+        "description": "Memory component."
+    },
+
+
+
+
+    "Enum": {
+        "prefix": ["enum"],
+        "body": [
+            "enum ${1:type_name} {",
+            "\t${2:e0} = 0x0  { desc = \"$3\"; };",
+            "\t$0",
+            "};"
+        ],
+        "description": "Enumeration component."
+    },
+
+
+
+
+    "Include": {
+        "prefix": ["`include"],
+        "body": ["`include \"$0\""],
+        "description": "Include directive."
+    },
+
+    "Define": {
+        "prefix": ["`define"],
+        "body": ["`define ${1:MACRO} $0"],
+        "description": "Define directive."
+    },
+
+    "Ifdef-end": {
+        "prefix": ["`ifdef"],
+        "body": [
+            "`ifdef ${1:MACRO}",
+            "\t$0",
+            "`endif"
+        ],
+        "description": "Ifdef/end directive."
+    },
+
+    "Elsif": {
+        "prefix": ["`elsif"],
+        "body": ["`elsif ${0:MACRO}"],
+        "description": "Elsif directive."
+    },
+
+    "Ifdef-else": {
+        "prefix": ["`ifdef"],
+        "body": [
+            "`ifdef ${1:MACRO}",
+            "\t$1",
+            "`else",
+            "\t$0",
+            "`endif"
+        ],
+        "description": "Ifdef/else directive."
+    },
+
+    "Ifndef-end": {
+        "prefix": ["`ifndef"],
+        "body": [
+            "`ifndef ${1:MACRO}",
+            "\t$0",
+            "`endif"
+        ],
+        "description": "Ifndef/end directive."
+    },
+
+    "Ifndef-else": {
+        "prefix": ["`ifndef"],
+        "body": [
+            "`ifndef ${1:MACRO}",
+            "\t$1",
+            "`else",
+            "\t$0",
+            "`endif"
+        ],
+        "description": "Ifndef/else directive."
+    },
+
+    "Undef": {
+        "prefix": ["`undef"],
+        "body": ["`undef ${0:MACRO}"],
+        "description": "Undefine directive."
+    }
+}
